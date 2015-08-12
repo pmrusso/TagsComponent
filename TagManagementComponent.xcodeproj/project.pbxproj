@@ -14,6 +14,11 @@
 		46F42E471B7A056A005A736B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F42E461B7A056A005A736B /* Images.xcassets */; };
 		46F42E4A1B7A056A005A736B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F42E481B7A056A005A736B /* LaunchScreen.xib */; };
 		46F42E561B7A056A005A736B /* TagManagementComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F42E551B7A056A005A736B /* TagManagementComponentTests.swift */; };
+		46F8DF6D1B7B3FAB00A3738F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF6C1B7B3FAB00A3738F /* Tag.swift */; };
+		46F8DF6F1B7B429F00A3738F /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF6E1B7B429F00A3738F /* TagsDataSource.swift */; };
+		46F8DF721B7B44D900A3738F /* TagsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF711B7B44D900A3738F /* TagsGateway.swift */; };
+		46F8DF741B7B45A700A3738F /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF731B7B45A700A3738F /* TagCell.swift */; };
+		46F8DF761B7B471900A3738F /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF751B7B471900A3738F /* TagViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		46F42E4F1B7A056A005A736B /* TagManagementComponentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagManagementComponentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F42E541B7A056A005A736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F42E551B7A056A005A736B /* TagManagementComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManagementComponentTests.swift; sourceTree = "<group>"; };
+		46F8DF6C1B7B3FAB00A3738F /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		46F8DF6E1B7B429F00A3738F /* TagsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
+		46F8DF711B7B44D900A3738F /* TagsGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsGateway.swift; sourceTree = "<group>"; };
+		46F8DF731B7B45A700A3738F /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		46F8DF751B7B471900A3738F /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,11 @@
 		46F42E391B7A056A005A736B /* TagManagementComponent */ = {
 			isa = PBXGroup;
 			children = (
+				46F8DF701B7B44BB00A3738F /* Gateways */,
+				46F8DF6B1B7B3F9900A3738F /* Models */,
+				46F8DF6A1B7B3F5200A3738F /* Views */,
+				46F8DF691B7B3F2500A3738F /* View Models */,
+				46F8DF671B7B3E9600A3738F /* Data Source */,
 				46F42E3C1B7A056A005A736B /* AppDelegate.swift */,
 				46F42E411B7A056A005A736B /* ViewController.swift */,
 				46F42E431B7A056A005A736B /* Main.storyboard */,
@@ -113,6 +128,46 @@
 				46F42E541B7A056A005A736B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46F8DF671B7B3E9600A3738F /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				46F8DF6E1B7B429F00A3738F /* TagsDataSource.swift */,
+			);
+			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		46F8DF691B7B3F2500A3738F /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				46F8DF751B7B471900A3738F /* TagViewModel.swift */,
+			);
+			name = "View Models";
+			sourceTree = "<group>";
+		};
+		46F8DF6A1B7B3F5200A3738F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				46F8DF731B7B45A700A3738F /* TagCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		46F8DF6B1B7B3F9900A3738F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				46F8DF6C1B7B3FAB00A3738F /* Tag.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		46F8DF701B7B44BB00A3738F /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+				46F8DF711B7B44D900A3738F /* TagsGateway.swift */,
+			);
+			name = Gateways;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +270,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F8DF741B7B45A700A3738F /* TagCell.swift in Sources */,
+				46F8DF6D1B7B3FAB00A3738F /* Tag.swift in Sources */,
 				46F42E421B7A056A005A736B /* ViewController.swift in Sources */,
 				46F42E3D1B7A056A005A736B /* AppDelegate.swift in Sources */,
+				46F8DF721B7B44D900A3738F /* TagsGateway.swift in Sources */,
+				46F8DF761B7B471900A3738F /* TagViewModel.swift in Sources */,
+				46F8DF6F1B7B429F00A3738F /* TagsDataSource.swift in Sources */,
 				46F42E401B7A056A005A736B /* TagManagementComponent.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +475,7 @@
 				46F42E5B1B7A056A005A736B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46F42E5C1B7A056A005A736B /* Build configuration list for PBXNativeTarget "TagManagementComponentTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +484,7 @@
 				46F42E5E1B7A056A005A736B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
