@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="-39" y="331"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Tags Table View Controller-->
         <scene sceneID="TUl-Id-6gp">
             <objects>
-                <tableViewController id="N9n-c5-RSe" sceneMemberID="viewController">
+                <tableViewController id="N9n-c5-RSe" customClass="TagsTableViewController" customModule="TagManagementComponent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iYN-bD-Fgw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="403"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +76,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hck-aK-blk">
                                             <rect key="frame" x="18" y="11" width="223" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -88,8 +88,12 @@
                             <outlet property="delegate" destination="N9n-c5-RSe" id="AXT-FK-g3B"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="dataSource" destination="ON4-sn-oZl" id="ULL-HM-1lS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJg-1H-huD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="ON4-sn-oZl" customClass="TagsDataSource" customModule="TagManagementComponent" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="511" y="513.5"/>
         </scene>
