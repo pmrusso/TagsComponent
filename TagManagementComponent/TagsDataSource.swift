@@ -25,6 +25,13 @@ class TagsDataSource: NSObject, UITableViewDataSource {
         items = [Tag]()
     }
     
+    func getAllTags(){
+        gateway.getAllTags { tags in
+            self.items = tags
+            self.delegate?.dataSourceDelegate(self, error: nil, tags: self.items)
+        }
+    }
+    
     func configTagCell(cell: TagCell, indexPath: NSIndexPath){
         let tagViewModel = TagViewModel(fullTag: items[indexPath.row])
         cell.setupWithViewModel(tagViewModel)

@@ -15,14 +15,17 @@ class TagsGateway: NSObject {
         
         let path = "http://mockbin.org/bin/8053044c-a645-4b17-b020-6d53fa5abedd"
         
-        makeHTTPget(path, onCompletion: {json, err in
+        http_get(path, onCompletion: {json, err in
             let list = json as [NSDictionary]
+            let tags = map(list, {(var dictionary) -> Tag in
+                return self.tagFromDictionary(dictionary)})
+            dispatch_async(dispatch_get_main_queue(), {
+                onCompletion(tags as [Tag])
+            })
         })
-        
-
     }
     
-    private func makeHTTPget(path: String, onCompletion: ([NSDictionary], NSError?) -> Void) {
+    private func http_get(path: String, onCompletion: ([NSDictionary], NSError?) -> Void) {
         let url = NSURL(string: path)!
         
         let session = NSURLSession.sharedSession()
@@ -30,7 +33,6 @@ class TagsGateway: NSObject {
             let httpResponse = response as! NSHTTPURLResponse
             if httpResponse.statusCode == 200 {
                 let jsonData = NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments, error: nil) as! [NSDictionary]
-                println(jsonData[0]["tag"])
                 onCompletion(jsonData, error)
             }
             
@@ -39,6 +41,6 @@ class TagsGateway: NSObject {
     }
     
     private func tagFromDictionary(dic: NSDictionary) -> Tag {
-        return Tag(id: dic["id"]!.integerValue, tag: dic["tag"]!.stringValue, color: dic["color"]!.stringValue) }
+        return Tag(id: dic["id"]!.integerValue, tag: dic["tag"] as! String, color: dic["color"] as! String) }
     
 }
