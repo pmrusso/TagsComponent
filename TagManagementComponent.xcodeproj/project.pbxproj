@@ -21,6 +21,7 @@
 		46F8DF761B7B471900A3738F /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF751B7B471900A3738F /* TagViewModel.swift */; };
 		8FFF433E1B81DBFF00F74E25 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF433D1B81DBFF00F74E25 /* MainViewController.swift */; };
 		8FFF43401B81E05E00F74E25 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF433F1B81E05E00F74E25 /* TagsCollectionViewController.swift */; };
+		8FFF43421B81E87600F74E25 /* TagCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF43411B81E87600F74E25 /* TagCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		46F8DF751B7B471900A3738F /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		8FFF433D1B81DBFF00F74E25 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8FFF433F1B81E05E00F74E25 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
+		8FFF43411B81E87600F74E25 /* TagCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				46F8DF731B7B45A700A3738F /* TagCell.swift */,
+				8FFF43411B81E87600F74E25 /* TagCollectionCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				46F42E421B7A056A005A736B /* TagsTableViewController.swift in Sources */,
 				46F42E3D1B7A056A005A736B /* AppDelegate.swift in Sources */,
 				46F8DF721B7B44D900A3738F /* TagsGateway.swift in Sources */,
+				8FFF43421B81E87600F74E25 /* TagCollectionCell.swift in Sources */,
 				46F8DF761B7B471900A3738F /* TagViewModel.swift in Sources */,
 				8FFF433E1B81DBFF00F74E25 /* MainViewController.swift in Sources */,
 				8FFF43401B81E05E00F74E25 /* TagsCollectionViewController.swift in Sources */,
