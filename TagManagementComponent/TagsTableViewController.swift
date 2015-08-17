@@ -38,7 +38,7 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.accessoryType = .Checkmark
-        parent.sendMessage()
+        parent.selectTag(dataSource.items[indexPath.row])
     }
 
 }

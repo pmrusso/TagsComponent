@@ -11,14 +11,19 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    func sendMessage(){
-        println("Was called")
+    var tagCollectionView: TagsCollectionViewController!
+    
+    func selectTag(tagToAdd: Tag) {
+        tagCollectionView.selectTag(tagToAdd)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch (segue.identifier!) {
             case "TagTableSeg":
                 (segue.destinationViewController as! TagsTableViewController).parent = self
+                break
+            case "TagCollectionSeg":
+                self.tagCollectionView = segue.destinationViewController as! TagsCollectionViewController
                 break
             default:
                 break
