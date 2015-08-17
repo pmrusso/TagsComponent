@@ -19,6 +19,7 @@
 		46F8DF721B7B44D900A3738F /* TagsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF711B7B44D900A3738F /* TagsGateway.swift */; };
 		46F8DF741B7B45A700A3738F /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF731B7B45A700A3738F /* TagCell.swift */; };
 		46F8DF761B7B471900A3738F /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8DF751B7B471900A3738F /* TagViewModel.swift */; };
+		8FFF433E1B81DBFF00F74E25 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF433D1B81DBFF00F74E25 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		46F8DF711B7B44D900A3738F /* TagsGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsGateway.swift; sourceTree = "<group>"; };
 		46F8DF731B7B45A700A3738F /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		46F8DF751B7B471900A3738F /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		8FFF433D1B81DBFF00F74E25 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				46F42E411B7A056A005A736B /* TagsTableViewController.swift */,
+				8FFF433D1B81DBFF00F74E25 /* MainViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				46F42E3D1B7A056A005A736B /* AppDelegate.swift in Sources */,
 				46F8DF721B7B44D900A3738F /* TagsGateway.swift in Sources */,
 				46F8DF761B7B471900A3738F /* TagViewModel.swift in Sources */,
+				8FFF433E1B81DBFF00F74E25 /* MainViewController.swift in Sources */,
 				46F8DF6F1B7B429F00A3738F /* TagsDataSource.swift in Sources */,
 				46F42E401B7A056A005A736B /* TagManagementComponent.xcdatamodeld in Sources */,
 			);

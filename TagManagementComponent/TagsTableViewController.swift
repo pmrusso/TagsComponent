@@ -12,6 +12,8 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
 
     @IBOutlet weak var dataSource: TagsDataSource!
     
+    var parent: MainViewController!
+    
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag]) {
         tableView.reloadData()
     }
@@ -36,6 +38,7 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.accessoryType = .Checkmark
+        parent.sendMessage()
     }
 
 }
