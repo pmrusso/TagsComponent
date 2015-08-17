@@ -36,9 +36,15 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.accessoryType = .Checkmark
-        parent.selectTag(dataSource.items[indexPath.row])
+        
+        if cell?.accessoryType != .Checkmark
+        {
+            cell?.accessoryType = .Checkmark
+            parent.selectTag(dataSource.items[indexPath.row])
+            dataSource.selectedItems[indexPath.row] = true
+        }
     }
 
 }

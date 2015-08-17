@@ -13,6 +13,7 @@ protocol TagsDataSourceDelegate {
 
 class TagsDataSource: NSObject, UITableViewDataSource {
     var items = [Tag]()
+    var selectedItems = [Bool]()
     var delegate: TagsDataSourceDelegate?
     
     let gateway = TagsGateway()
@@ -28,12 +29,14 @@ class TagsDataSource: NSObject, UITableViewDataSource {
     func getAllTags(){
         gateway.getAllTags { tags in
             self.items = tags
+            self.selectedItems = [Bool](count: self.items.count, repeatedValue: false)
             self.delegate?.dataSourceDelegate(self, error: nil, tags: self.items)
         }
     }
     
     func configTagCell(cell: TagCell, indexPath: NSIndexPath){
         let tagViewModel = TagViewModel(fullTag: items[indexPath.row])
+        cell.accessoryType = selectedItems[indexPath.row] ? .Checkmark : .None
         cell.setupWithViewModel(tagViewModel)
     }
     

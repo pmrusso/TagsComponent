@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-class TagsCollectionViewController: UICollectionViewController {
+class TagsCollectionViewController: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var reuseIdentifier = "SelectedTagCell"
     var selectedTags = [Tag]()
     
+    var previousCell: TagCollectionCell!
+    
     func selectTag(tagToAdd: Tag){
         self.selectedTags.append(tagToAdd)
+        self.selectedTags.sort({$0.tag < $1.tag})
         self.collectionView?.reloadData()
     }
-}
-
-
-extension TagsCollectionViewController: UICollectionViewDataSource {
+    
     //1
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -34,8 +34,18 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
     //3
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! TagCollectionCell
+        
         configureCollectionCell(cell, indexPath: indexPath)
+        
+        self.previousCell = cell
+        
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+            return CGFloat(8)
     }
     
     private func configureCollectionCell(cell: TagCollectionCell, indexPath: NSIndexPath) {
@@ -55,5 +65,14 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
         
         cell.backgroundColor = UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255 , alpha: CGFloat(1) )
         cell.tagProper.text = tagProper.tag
+        cell.tagProper.sizeToFit()
+        cell.bounds.size = CGSize(width: cell.tagProper.bounds.size.width + 4, height: cell.tagProper.bounds.size.height + 2)
+        collectionViewLayout.invalidateLayout()
+       /* if previousCell != nil {
+            cell.bounds = CGRect(x: previousCell.bounds.maxX + 8, y: cell.bounds.minY, width: cell.bounds.width, height: cell.bounds.height)
+        }*/
     }
+    
 }
+
+
