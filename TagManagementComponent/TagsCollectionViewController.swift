@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TagsCollectionViewController: UICollectionViewController, UICollectionViewDataSource/*, UICollectionViewDelegateFlowLayout*/ {
+class TagsCollectionViewController: UICollectionViewController, UICollectionViewDataSource {
     var reuseIdentifier = "SelectedTagCell"
     var selectedTags = [Tag]()
     
@@ -21,17 +21,14 @@ class TagsCollectionViewController: UICollectionViewController, UICollectionView
         self.collectionView?.reloadData()
     }
     
-    //1
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-    //2
+
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedTags.count
     }
     
-    //3
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! TagCollectionCell
         
@@ -41,12 +38,7 @@ class TagsCollectionViewController: UICollectionViewController, UICollectionView
         
         return cell
     }
-    
-    /*func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-            return CGFloat(8)
-    }*/
+
     
     private func configureCollectionCell(cell: TagCollectionCell, indexPath: NSIndexPath) {
         let tagProper = selectedTags[indexPath.row]
@@ -66,9 +58,7 @@ class TagsCollectionViewController: UICollectionViewController, UICollectionView
         cell.backgroundColor = UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255 , alpha: CGFloat(1) )
         cell.tagProper.text = tagProper.tag
         cell.tagProper.sizeToFit()
-        cell.bounds.size = CGSize(width: cell.tagProper.bounds.size.width + 4, height: cell.tagProper.bounds.size.height + 2)
-        collectionViewLayout.invalidateLayout()
-
+        cell.sizeToFit()
     }
     
 }
