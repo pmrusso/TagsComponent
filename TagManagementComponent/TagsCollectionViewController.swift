@@ -12,11 +12,14 @@ import UIKit
 class TagsCollectionViewController: UICollectionViewController, UICollectionViewDataSource {
     var reuseIdentifier = "SelectedTagCell"
     var selectedTags = [Tag]()
+    var selectedTagsIndexes = [Int]()
+    var parent: MainViewController!
     
     var previousCell: TagCollectionCell!
     
-    func selectTag(tagToAdd: Tag){
+    func selectTag(tagToAdd: Tag, index: Int){
         self.selectedTags.append(tagToAdd)
+        self.selectedTagsIndexes.append(index)
         self.selectedTags.sort({$0.tag < $1.tag})
         self.collectionView?.reloadData()
     }
@@ -27,6 +30,13 @@ class TagsCollectionViewController: UICollectionViewController, UICollectionView
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedTags.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {        
+        self.collectionView?.reloadData()
+        parent.removeCheckmark(selectedTagsIndexes[indexPath.row])
+        selectedTags.removeAtIndex(indexPath.row)
+        selectedTagsIndexes.removeAtIndex(indexPath.row)
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

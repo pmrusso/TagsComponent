@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Tag: NSObject {
+class Tag: NSObject{
     var id: Int
     var tag: String
     var color: String

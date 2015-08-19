@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Pedro Russo. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
@@ -15,6 +16,11 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
     var parent: MainViewController!
     
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag]) {
+        tableView.reloadData()
+    }
+    
+    func removeCheckmark(tagToRemove: Int){
+        dataSource.selectedItems[tagToRemove] = false
         tableView.reloadData()
     }
     
@@ -42,7 +48,7 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
         if cell?.accessoryType != .Checkmark
         {
             cell?.accessoryType = .Checkmark
-            parent.selectTag(dataSource.items[indexPath.row])
+            parent.selectTag(dataSource.items[indexPath.row], index: indexPath.row)
             dataSource.selectedItems[indexPath.row] = true
         }
     }
