@@ -9,15 +9,26 @@
 import Foundation
 import UIKit
 
-class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
+class TagsTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, TagsDataSourceDelegate {
 
     @IBOutlet weak var dataSource: TagsDataSource!
+    
     
     var parent: MainViewController!
     
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag]) {
         tableView.reloadData()
     }
+    
+    func filterContentForSearchText(searchText: String) {
+        // Filter the array using the filter method
+        self.dataSource.filteredTags = self.dataSource.items.filter({( tag: Tag) -> Bool in
+            let stringMatch = tag.tag.rangeOfString(searchText)
+            return (stringMatch != nil)
+        })
+    }
+    
+
     
     func removeCheckmark(tagToRemove: Int){
         dataSource.selectedItems[tagToRemove] = false
@@ -40,6 +51,15 @@ class TagsTableViewController: UITableViewController, TagsDataSourceDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+   /* override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println("override")
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            return self.dataSource.filteredTags.count
+        } else {
+            return self.dataSource.items.count
+        }
+    }*/
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

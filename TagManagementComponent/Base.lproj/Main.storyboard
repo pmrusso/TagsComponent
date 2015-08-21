@@ -16,20 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="bhj-XK-vZm">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <color key="barTintColor" red="1" green="0.94712764199999999" blue="0.99070066499999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="NTk-sd-Ydf"/>
-                                </connections>
-                            </searchBar>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wdd-LE-OKm">
                                 <rect key="frame" x="22" y="64" width="276" height="100"/>
                                 <connections>
                                     <segue destination="dYu-Dn-OI8" kind="embed" identifier="TagCollectionSeg" id="Dm2-Ng-xNu"/>
                                 </connections>
                             </containerView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uKC-Kf-VUu">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ggy-fs-5Vz"/>
+                                </connections>
+                            </searchBar>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yZv-4Y-N2a">
                                 <rect key="frame" x="22" y="172" width="276" height="396"/>
                                 <connections>
@@ -39,8 +38,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="jD1-P4-O4k" id="tOQ-mr-Qgy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="jD1-P4-O4k">
+                    <connections>
+                        <outlet property="searchBar" destination="uKC-Kf-VUu" id="vcm-iN-udd"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="jYA-Ey-bcE"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="rWV-2u-dy2"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="tGq-lF-J7D"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-39" y="331"/>
         </scene>
@@ -69,7 +79,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpT-Sq-Ylg">
                                             <rect key="frame" x="4" y="8" width="75" height="13"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

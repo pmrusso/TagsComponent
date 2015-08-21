@@ -13,6 +13,7 @@ protocol TagsDataSourceDelegate {
 
 class TagsDataSource: NSObject, UITableViewDataSource {
     var items = [Tag]()
+    var filteredTags = [Tag]()
     var selectedItems = [Bool]()
     var delegate: TagsDataSourceDelegate?
     
@@ -49,6 +50,7 @@ class TagsDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println("not ride")
         return self.items.count;
     }
 

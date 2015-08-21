@@ -13,6 +13,9 @@ class MainViewController: UIViewController {
     
     var tagCollectionView: TagsCollectionViewController!
     var tagTableView: TagsTableViewController!
+    @IBOutlet weak var searchBarController: UISearchDisplayController!
+    
+    
     
     func selectTag(tagToAdd: Tag, index: Int) {
         tagCollectionView.selectTag(tagToAdd, index: index)
