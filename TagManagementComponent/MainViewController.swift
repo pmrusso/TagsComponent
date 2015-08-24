@@ -13,15 +13,14 @@ class MainViewController: UIViewController {
     
     var tagCollectionView: TagsCollectionViewController!
     var tagTableView: TagsTableViewController!
-    @IBOutlet weak var searchBarController: UISearchDisplayController!
-    
+    var resultSearchController = UISearchController()
     
     
     func selectTag(tagToAdd: Tag, index: Int) {
         tagCollectionView.selectTag(tagToAdd, index: index)
     }
     
-    func removeCheckmark(tagToRemove: Int){
+    func removeCheckmark(tagToRemove: Tag){
         tagTableView.removeCheckmark(tagToRemove)
     }
     
@@ -30,6 +29,17 @@ class MainViewController: UIViewController {
             case "TagTableSeg":
                 self.tagTableView = segue.destinationViewController as! TagsTableViewController
                 (segue.destinationViewController as! TagsTableViewController).parent = self
+                
+                self.resultSearchController = ({
+                    let controller = UISearchController(searchResultsController: nil)
+                    controller.searchResultsUpdater = self.tagTableView
+                    controller.dimsBackgroundDuringPresentation = false
+                    controller.searchBar.sizeToFit()
+                    controller.hidesNavigationBarDuringPresentation = false
+                    self.navigationItem.titleView = controller.searchBar                    
+                    return controller
+                })()
+                
                 break
             case "TagCollectionSeg":
                 self.tagCollectionView = segue.destinationViewController as! TagsCollectionViewController

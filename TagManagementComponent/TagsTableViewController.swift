@@ -9,29 +9,30 @@
 import Foundation
 import UIKit
 
-class TagsTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, TagsDataSourceDelegate {
+class TagsTableViewController: UITableViewController, UISearchResultsUpdating, TagsDataSourceDelegate {
 
     @IBOutlet weak var dataSource: TagsDataSource!
     
     
     var parent: MainViewController!
+    var searchText : String?
     
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag]) {
         tableView.reloadData()
     }
     
-    func filterContentForSearchText(searchText: String) {
-        // Filter the array using the filter method
-        self.dataSource.filteredTags = self.dataSource.items.filter({( tag: Tag) -> Bool in
-            let stringMatch = tag.tag.rangeOfString(searchText)
+    
+    func removeCheckmark(tagToRemove: Tag){
+        var tagToUpdate = dataSource.items.filter({( tag: Tag ) -> Bool in
+            let stringMatch = tag.tag.rangeOfString(tagToRemove.tag)
             return (stringMatch != nil)
         })
-    }
-    
-
-    
-    func removeCheckmark(tagToRemove: Int){
-        dataSource.selectedItems[tagToRemove] = false
+        tagToUpdate.first?.checked = false
+        
+        if (dataSource.filteredTags.count != 0) {
+            self.dataSource.filteredTags.removeAll(keepCapacity: false)
+            self.dataSource.filterContentForSearchText(self.searchText!)
+        }
         tableView.reloadData()
     }
     
@@ -51,26 +52,34 @@ class TagsTableViewController: UITableViewController, UISearchBarDelegate, UISea
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-   /* override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("override")
-        if tableView == self.searchDisplayController!.searchResultsTableView {
-            return self.dataSource.filteredTags.count
-        } else {
-            return self.dataSource.items.count
-        }
-    }*/
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
-        if cell?.accessoryType != .Checkmark
-        {
-            cell?.accessoryType = .Checkmark
-            parent.selectTag(dataSource.items[indexPath.row], index: indexPath.row)
-            dataSource.selectedItems[indexPath.row] = true
+        if dataSource.filteredTags.count == 0{
+            if cell?.accessoryType != .Checkmark
+            {
+                cell?.accessoryType = .Checkmark
+                    parent.selectTag(dataSource.items[indexPath.row], index: indexPath.row)
+            dataSource.items[indexPath.row].checked = true
+            }
         }
+        else {
+            if cell?.accessoryType != .Checkmark
+            {
+                cell?.accessoryType = .Checkmark
+                parent.selectTag(dataSource.filteredTags[indexPath.row], index: indexPath.row)
+                dataSource.filteredTags[indexPath.row].checked = true
+            }
+        }
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        self.dataSource.filteredTags.removeAll(keepCapacity: false)
+        self.dataSource.filterContentForSearchText(searchController.searchBar.text)
+        self.searchText = searchController.searchBar.text
+        tableView.reloadData()
     }
 
 }

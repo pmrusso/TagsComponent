@@ -11,10 +11,9 @@ protocol TagsDataSourceDelegate {
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag])
 }
 
-class TagsDataSource: NSObject, UITableViewDataSource {
+class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     var items = [Tag]()
     var filteredTags = [Tag]()
-    var selectedItems = [Bool]()
     var delegate: TagsDataSourceDelegate?
     
     let gateway = TagsGateway()
@@ -30,15 +29,22 @@ class TagsDataSource: NSObject, UITableViewDataSource {
     func getAllTags(){
         gateway.getAllTags { tags in
             self.items = tags
-            self.selectedItems = [Bool](count: self.items.count, repeatedValue: false)
             self.delegate?.dataSourceDelegate(self, error: nil, tags: self.items)
         }
     }
     
     func configTagCell(cell: TagCell, indexPath: NSIndexPath){
-        let tagViewModel = TagViewModel(fullTag: items[indexPath.row])
-        cell.accessoryType = selectedItems[indexPath.row] ? .Checkmark : .None
-        cell.setupWithViewModel(tagViewModel)
+        
+        if (filteredTags.count == 0)
+        {
+            let tagViewModel = TagViewModel(fullTag: items[indexPath.row])
+            cell.accessoryType = items[indexPath.row].checked ? .Checkmark : .None
+            cell.setupWithViewModel(tagViewModel)
+        }else {
+            let tagViewModel = TagViewModel(fullTag: filteredTags[indexPath.row])
+            cell.accessoryType = filteredTags[indexPath.row].checked ? .Checkmark : .None
+            cell.setupWithViewModel(tagViewModel)
+        }
     }
     
     func tableView(tableView: UITableView,
@@ -50,9 +56,14 @@ class TagsDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("not ride")
-        return self.items.count;
+        return self.filteredTags.count == 0 ? self.items.count : self.filteredTags.count;
     }
 
+    func filterContentForSearchText(searchText: String) {
+        self.filteredTags = self.items.filter({( tag: Tag ) -> Bool in
+            let stringMatch = tag.tag.rangeOfString(searchText)
+            return (stringMatch != nil)
+        })
+    }
     
 }
