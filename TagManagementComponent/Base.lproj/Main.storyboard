@@ -1,56 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gWs-iP-DrT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="RIb-D4-G6X">
+            <objects>
+                <navigationController id="gWs-iP-DrT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oo0-tN-DsL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="uWo-re-oQF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qf-RV-bBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-495" y="314"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="TagManagementComponent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MainViewController" customModule="TagManagementComponent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aTX-n5-ejD"/>
                         <viewControllerLayoutGuide type="bottom" id="xj5-Re-C9t"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wdd-LE-OKm">
-                                <rect key="frame" x="22" y="64" width="276" height="100"/>
-                                <connections>
-                                    <segue destination="dYu-Dn-OI8" kind="embed" identifier="TagCollectionSeg" id="Dm2-Ng-xNu"/>
-                                </connections>
-                            </containerView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uKC-Kf-VUu">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ggy-fs-5Vz"/>
-                                </connections>
-                            </searchBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yZv-4Y-N2a">
-                                <rect key="frame" x="22" y="172" width="276" height="396"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZv-4Y-N2a" userLabel="Table Container View">
+                                <rect key="frame" x="10" y="112" width="300" height="392"/>
                                 <connections>
                                     <segue destination="N9n-c5-RSe" kind="embed" identifier="TagTableSeg" id="x9p-SX-JKH"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdd-LE-OKm" userLabel="Collection Container View">
+                                <rect key="frame" x="10" y="8" width="300" height="96"/>
+                                <connections>
+                                    <segue destination="dYu-Dn-OI8" kind="embed" identifier="TagCollectionSeg" id="Dm2-Ng-xNu"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="top" secondItem="Wdd-LE-OKm" secondAttribute="bottom" constant="8" id="Np0-6j-hO8"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="top" secondItem="Wdd-LE-OKm" secondAttribute="bottom" constant="8" symbolic="YES" id="Sth-7J-cLw"/>
+                            <constraint firstItem="Wdd-LE-OKm" firstAttribute="top" secondItem="aTX-n5-ejD" secondAttribute="bottom" constant="8" symbolic="YES" id="UXl-6h-Tno"/>
+                            <constraint firstAttribute="trailing" secondItem="yZv-4Y-N2a" secondAttribute="trailing" constant="10" id="Xha-lb-hTo"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="trailing" secondItem="Wdd-LE-OKm" secondAttribute="trailing" id="fTH-HP-jPM"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="h5w-Q1-GpR"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="bottom" secondItem="xj5-Re-C9t" secondAttribute="top" id="jLd-GN-LFF"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="top" secondItem="Wdd-LE-OKm" secondAttribute="bottom" constant="8" id="mzg-ts-3ZK"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="leading" secondItem="Wdd-LE-OKm" secondAttribute="leading" id="pfz-2C-hfK"/>
+                            <constraint firstItem="yZv-4Y-N2a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="112" id="xY0-f4-Jbj"/>
+                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="jD1-P4-O4k" id="tOQ-mr-Qgy"/>
-                    </connections>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="a1Q-Uf-kWo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="jD1-P4-O4k">
-                    <connections>
-                        <outlet property="searchBar" destination="uKC-Kf-VUu" id="vcm-iN-udd"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="jYA-Ey-bcE"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="rWV-2u-dy2"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="tGq-lF-J7D"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-39" y="331"/>
         </scene>
@@ -69,7 +81,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" reuseIdentifier="SelectedTagCell" id="AId-oB-yfV" customClass="TagCollectionCell" customModule="TagManagementComponent" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="SelectedTagCell" id="AId-oB-yfV" customClass="TagCollectionCell" customModule="TagManagementComponent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="81" height="29"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -77,7 +89,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpT-Sq-Ylg">
-                                            <rect key="frame" x="4" y="8" width="75" height="13"/>
+                                            <rect key="frame" x="4" y="8" width="76" height="13"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -107,7 +119,7 @@
             <objects>
                 <tableViewController id="N9n-c5-RSe" customClass="TagsTableViewController" customModule="TagManagementComponent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iYN-bD-Fgw">
-                        <rect key="frame" x="0.0" y="0.0" width="276" height="396"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="392"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

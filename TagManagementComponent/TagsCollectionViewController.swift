@@ -68,6 +68,10 @@ class TagsCollectionViewController: UICollectionViewController, UICollectionView
         cell.backgroundColor = UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255 , alpha: CGFloat(1) )
         cell.tagProper.text = tagProper.tag
         cell.tagProper.sizeToFit()
+        cell.layer.masksToBounds = true;
+        cell.layer.cornerRadius = 6;
+        cell.layer.borderWidth = 2;
+        cell.layer.borderColor = UIColor.grayColor().CGColor
         cell.sizeToFit()
     }
     
