@@ -21,14 +21,16 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
         tableView.reloadData()
     }
     
-    
-    func removeCheckmark(tagToRemove: Tag){
+    func updateTag(tagToRemove: Tag){
         var tagToUpdate = dataSource.items.filter({( tag: Tag ) -> Bool in
             let stringMatch = tag.tag.rangeOfString(tagToRemove.tag)
             return (stringMatch != nil)
-        })
+            })
         tagToUpdate.first?.checked = false
-        
+    }
+    
+    func removeCheckmark(tagToRemove: Tag){
+        updateTag(tagToRemove)
         if (dataSource.filteredTags.count != 0) {
             self.dataSource.filteredTags.removeAll(keepCapacity: false)
             self.dataSource.filterContentForSearchText(self.dataSource.searchText!)
