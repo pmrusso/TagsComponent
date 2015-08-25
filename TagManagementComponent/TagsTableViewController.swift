@@ -15,7 +15,7 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
     
     
     var parent: MainViewController!
-    var searchText : String?
+    
     
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag]) {
         tableView.reloadData()
@@ -31,7 +31,7 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
         
         if (dataSource.filteredTags.count != 0) {
             self.dataSource.filteredTags.removeAll(keepCapacity: false)
-            self.dataSource.filterContentForSearchText(self.searchText!)
+            self.dataSource.filterContentForSearchText(self.dataSource.searchText!)
         }
         tableView.reloadData()
     }
@@ -78,7 +78,7 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.dataSource.filteredTags.removeAll(keepCapacity: false)
         self.dataSource.filterContentForSearchText(searchController.searchBar.text)
-        self.searchText = searchController.searchBar.text
+        self.dataSource.searchText = searchController.searchBar.text
         tableView.reloadData()
     }
 

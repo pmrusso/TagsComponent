@@ -17,6 +17,7 @@ class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     var delegate: TagsDataSourceDelegate?
     
     let gateway = TagsGateway()
+    var searchText : String?
     
     subscript(index: Int) -> Tag {
         return items[index]
@@ -35,7 +36,7 @@ class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     
     func configTagCell(cell: TagCell, indexPath: NSIndexPath){
         
-        if (filteredTags.count == 0)
+        if (self.searchText?.isEmpty == nil || self.searchText?.isEmpty == true)
         {
             let tagViewModel = TagViewModel(fullTag: items[indexPath.row])
             cell.accessoryType = items[indexPath.row].checked ? .Checkmark : .None
@@ -56,7 +57,7 @@ class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filteredTags.count == 0 ? self.items.count : self.filteredTags.count;
+        return self.searchText?.isEmpty == nil || self.searchText?.isEmpty == true ? self.items.count : self.filteredTags.count;
     }
 
     func filterContentForSearchText(searchText: String) {
