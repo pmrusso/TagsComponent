@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Pedro Russo. All rights reserved.
 //
 import UIKit
+import CoreData
 
 protocol TagsDataSourceDelegate {
     func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag])
@@ -28,10 +29,79 @@ class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     }
     
     func getAllTags(){
-        gateway.getAllTags { tags in
-            self.items = tags
-            self.delegate?.dataSourceDelegate(self, error: nil, tags: self.items)
+       gateway.getAllTags { tags, err in
+        if err == nil {
+            self.items = tags!
+            self.saveTags()
+        }else {
+            self.loadTags()
         }
+        self.delegate?.dataSourceDelegate(self, error: nil, tags: self.items)
+        }
+        
+    }
+    
+    func loadTags() {
+        var savedTags: [NSManagedObject]
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName:"Tag")
+        
+        var error: NSError?
+        
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as? [NSManagedObject]
+        
+        if let results = fetchedResults {
+            savedTags = results
+            for tag in savedTags {
+                let tag = Tag(id: tag.valueForKey("id") as! Int, tag: tag.valueForKey("tag") as! String, color: tag.valueForKey("color") as! String)
+                
+                self.items.append(tag)
+            }
+        } else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
+        
+        
+    }
+    
+    func saveTags() {
+        
+        var saveTags: [NSManagedObject]
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let entity =  NSEntityDescription.entityForName("Tag",
+            inManagedObjectContext:
+            managedContext)
+        
+        for item in self.items {
+        
+        let tagToSave = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext:managedContext)
+        
+        tagToSave.setValue(item.tag, forKey: "tag")
+        tagToSave.setValue(item.id, forKey: "id")
+        tagToSave.setValue(item.color, forKey: "color")
+        tagToSave.setValue(item.checked, forKey: "checked")
+         
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+
+            
+        }
+        
     }
     
     func configTagCell(cell: TagCell, indexPath: NSIndexPath){
