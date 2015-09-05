@@ -65,6 +65,10 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
                 cell?.accessoryType = .Checkmark
                     parent.selectTag(dataSource.items[indexPath.row], index: indexPath.row)
             dataSource.items[indexPath.row].checked = true
+            }else {
+                cell?.accessoryType = .None
+                dataSource.items[indexPath.row].checked = false
+                parent.deSelectTag(dataSource.items[indexPath.row], index: indexPath.row)
             }
         }
         else {
@@ -73,7 +77,12 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
                 cell?.accessoryType = .Checkmark
                 parent.selectTag(dataSource.filteredTags[indexPath.row], index: indexPath.row)
                 dataSource.filteredTags[indexPath.row].checked = true
+            }else {
+                cell?.accessoryType = .None
+                dataSource.filteredTags[indexPath.row].checked = false
+                parent.deSelectTag(dataSource.items[indexPath.row], index: indexPath.row)
             }
+
         }
     }
     

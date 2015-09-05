@@ -24,7 +24,8 @@ class TagsGateway: NSObject {
                     onCompletion(tags as [Tag], err as NSError?)
                 })
             }else {
-                onCompletion(nil, err as NSError?)
+                dispatch_async(dispatch_get_main_queue(), {
+                    onCompletion(nil, err as NSError?)})
             }
         })
     }

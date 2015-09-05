@@ -17,7 +17,12 @@ class MainViewController: UIViewController {
     
     
     func selectTag(tagToAdd: Tag, index: Int) {
-        tagCollectionView.selectTag(tagToAdd, index: index)
+        tagCollectionView.selectTag(tagToAdd, indexR: index)
+    }
+    
+    func deSelectTag(tagToRemove: Tag, index: Int)
+    {
+        tagCollectionView.deSelectTag(tagToRemove)
     }
     
     func removeCheckmark(tagToRemove: Tag){
