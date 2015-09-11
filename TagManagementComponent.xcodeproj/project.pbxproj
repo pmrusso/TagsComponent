@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		464524BA1BA34F6500DEBAA7 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464524B91BA34F6500DEBAA7 /* UIHelper.swift */; };
 		46F42E3D1B7A056A005A736B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F42E3C1B7A056A005A736B /* AppDelegate.swift */; };
 		46F42E401B7A056A005A736B /* TagManagementComponent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46F42E3E1B7A056A005A736B /* TagManagementComponent.xcdatamodeld */; };
 		46F42E421B7A056A005A736B /* TagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F42E411B7A056A005A736B /* TagsTableViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		464524B91BA34F6500DEBAA7 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		46F42E371B7A056A005A736B /* TagManagementComponent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagManagementComponent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F42E3B1B7A056A005A736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F42E3C1B7A056A005A736B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		464524B81BA34F4F00DEBAA7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				464524B91BA34F6500DEBAA7 /* UIHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		46F42E2E1B7A056A005A736B = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 		46F42E391B7A056A005A736B /* TagManagementComponent */ = {
 			isa = PBXGroup;
 			children = (
+				464524B81BA34F4F00DEBAA7 /* Helpers */,
 				46F8DF701B7B44BB00A3738F /* Gateways */,
 				46F8DF6B1B7B3F9900A3738F /* Models */,
 				46F8DF6A1B7B3F5200A3738F /* Views */,
@@ -298,6 +309,7 @@
 				8FFF43401B81E05E00F74E25 /* TagsCollectionViewController.swift in Sources */,
 				46F8DF6F1B7B429F00A3738F /* TagsDataSource.swift in Sources */,
 				46F42E401B7A056A005A736B /* TagManagementComponent.xcdatamodeld in Sources */,
+				464524BA1BA34F6500DEBAA7 /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,8 @@ import UIKit
 import CoreData
 
 protocol TagsDataSourceDelegate {
-    func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag])
+    func dataSourceDelegate(data: TagsDataSource,didLoadTags: [Tag])
+    func dataSourceDelegate(data: TagsDataSource, didNotLoadTags: NSError?)
 }
 
 class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
@@ -20,8 +21,8 @@ class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     let gateway = TagsGateway()
     var searchText : String?
     
-    subscript(index: Int) -> Tag {
-        return items[index]
+    subscript(index: Int) -> Tag? {
+        return index<items.count ? items[index] : nil
     }
     
     func reset() {
@@ -31,12 +32,14 @@ class TagsDataSource: NSObject, UITableViewDataSource, UISearchBarDelegate {
     func getAllTags(){
        gateway.getAllTags { tags, err in
         if err == nil {
-            self.items = tags!
+            //self.items = tags!
             self.saveTags()
+            self.delegate?.dataSourceDelegate(self, didLoadTags: tags!)
         }else {
             self.loadTags()
+            self.delegate?.dataSourceDelegate(self, didNotLoadTags: err)
         }
-        self.delegate?.dataSourceDelegate(self, error: nil, tags: self.items)
+        
         }
         
     }

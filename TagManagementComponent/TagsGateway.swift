@@ -18,9 +18,9 @@ class TagsGateway: NSObject {
         http_get(path, onCompletion: { json, err in
             if err == nil {
                 let list = json as [NSDictionary]
-                let tags = map(list, {(var dictionary) -> Tag in
-                    return self.tagFromDictionary(dictionary)})
                 dispatch_async(dispatch_get_main_queue(), {
+                    let tags = map(list, {(var dictionary) -> Tag in
+                        return self.tagFromDictionary(dictionary)})
                     onCompletion(tags as [Tag], err as NSError?)
                 })
             }else {

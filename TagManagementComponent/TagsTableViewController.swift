@@ -17,8 +17,19 @@ class TagsTableViewController: UITableViewController, UISearchResultsUpdating, T
     var parent: MainViewController!
     
     
-    func dataSourceDelegate(data: TagsDataSource, error: NSError?, tags: [Tag]) {
-        tableView.reloadData()
+    func dataSourceDelegate(data: TagsDataSource, didLoadTags: [Tag]) {
+        //tableView.reloadData()
+        for tag in didLoadTags {
+            dataSource.items.append(tag)
+            let index = find(didLoadTags,tag)
+            let indexPaths = [NSIndexPath(forRow: index!, inSection: 0)]
+            
+            tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
+        }
+    }
+    
+    func dataSourceDelegate(data: TagsDataSource, didNotLoadTags: NSError?) {
+        presentError(didNotLoadTags)
     }
     
     func updateTag(tagToRemove: Tag){
